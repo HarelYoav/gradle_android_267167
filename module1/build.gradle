@@ -47,9 +47,6 @@ afterEvaluate {
                 artifact("$buildDir/outputs/apk/real/release/patrol-admin-real-release.apk", {
                     classifier "real-app"
                 })
-                artifact("$buildDir/outputs/apk/stub/release/patrol-admin-stub-release.apk", {
-                    classifier "stub-app"
-                })
             }
         }
     }
