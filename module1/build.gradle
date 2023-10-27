@@ -39,6 +39,24 @@ android {
 
 }
 
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                artifactId = "${rootProject.name}"
+                version = "${android.defaultConfig.versionName}"
+            }
+        }
+    }
+    pluginManager.withPlugin('com.jfrog.artifactory') {
+        artifactoryPublish {
+            publications(publishing.publications.release)
+        }
+    }
+}
+
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
