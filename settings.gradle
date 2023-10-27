@@ -1,2 +1,4 @@
 //rootProject.name = "test-library-name"
-include ':app'
+include ':app', ':module1', ':module2', ':module3'
+
+rootProject.name = "patrol-admin-app"

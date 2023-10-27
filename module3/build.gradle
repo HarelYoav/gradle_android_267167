@@ -1,0 +1,84 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: "maven-publish"
+apply plugin: "androidx.navigation.safeargs"
+apply plugin: "kotlin-kapt"
+
+android {
+    signingConfigs {
+        config {
+            keyAlias 'patrolKey'
+            keyPassword 'patrol'
+            storeFile file('../certificate/patrolStore.jks')
+            storePassword 'patrol'
+        }
+    }
+    compileSdkVersion 33
+    buildToolsVersion '33.0.1'
+    defaultConfig {
+        applicationId "pl.ppl.patrol.guard"
+        minSdkVersion 30
+        targetSdkVersion 33
+        versionCode (versionNumber as Integer)
+        versionName "${version}"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+    lintOptions {
+        warning 'InvalidPackage'
+        disable "UnsafeExperimentalUsageWarning"
+    }
+    flavorDimensions 'api'
+    productFlavors {
+        stub {
+            dimension 'api'
+        }
+        real {
+            dimension 'api'
+        }
+    }
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation project(':patrol-mobile-common')
+    implementation 'io.github.yavski:fab-speed-dial:1.0.7'
+    implementation 'org.altbeacon:android-beacon-library:2.19.5'
+    implementation 'org.greenrobot:eventbus:3.3.1'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation('com.google.android.gms:play-services-location:21.0.1')
+
+    // OpenStreetMap
+    api 'org.osmdroid:osmdroid-android:6.1.16'
+    implementation 'com.github.MKergall:osmbonuspack:6.6.0'
+
+    //bug reporting
+    def acraVersion = '5.10.1'
+    implementation "ch.acra:acra-http:$acraVersion"
+    implementation "ch.acra:acra-toast:$acraVersion"
+
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.5.1', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestImplementation 'androidx.test:runner:1.5.2'
+    testImplementation(platform('org.junit:junit-bom:5.9.1'))
+    testImplementation('org.junit.jupiter:junit-jupiter')
+}
+
