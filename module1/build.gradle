@@ -55,7 +55,8 @@ afterEvaluate {
     }
     pluginManager.withPlugin('com.jfrog.artifactory') {
         artifactoryPublish {
-            publications(publishing.publications.app)
+            dependsOn('build')
+            publications(publishing.publications.apk)
         }
     }
 }
