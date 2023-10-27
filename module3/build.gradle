@@ -19,8 +19,8 @@ android {
         applicationId "pl.ppl.patrol.guard"
         minSdkVersion 30
         targetSdkVersion 33
-        versionCode (versionNumber as Integer)
-        versionName "${version}"
+        versionCode 1
+        versionName "1.1"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary = true
     }
