@@ -61,7 +61,7 @@ dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    api('com.github.NaikSoftware:StompProtocolAndroid:1.6.6')
+    //api('com.github.NaikSoftware:StompProtocolAndroid:1.6.6')
     api 'org.java-websocket:Java-WebSocket:1.5.3'
 
 
