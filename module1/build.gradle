@@ -43,8 +43,7 @@ android {
     libraryVariants.all { variant ->
         variant.outputs.all {
             // Do not add Variant (buildType) Name at the end
-            //outputFileName = "${rootProject.name}-${defaultConfig.versionName}.aar"
-            outputFileName = "$buildDir/outputs/apk/real/release/patrol-admin-real-release.apk"
+            outputFileName = "${rootProject.name}-${defaultConfig.versionName}.apk"
         }
     }
 
@@ -55,7 +54,7 @@ afterEvaluate {
     publishing {
         publications {
             apk(MavenPublication) {
-                artifact("$buildDir/outputs/apk/real/release/patrol-admin-real-release.apk", {
+                artifact("${rootProject.name}-${defaultConfig.versionName}.apk", {
                     classifier "real-app"
                 })
             }
