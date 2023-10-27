@@ -43,16 +43,18 @@ android {
 afterEvaluate {
     publishing {
         publications {
-            release(MavenPublication) {
-                from components.release
-                artifactId = "${rootProject.name}"
-                version = "${android.defaultConfig.versionName}"
+            app(MavenPublication) {
+                groupId = group
+                artifactId = project.getName()
+                version = currentVersion
+
+                artifact("$buildDir/outputs/apk/release/app-release-unsigned.apk")
             }
         }
     }
     pluginManager.withPlugin('com.jfrog.artifactory') {
         artifactoryPublish {
-            publications(publishing.publications.release)
+            publications(publishing.publications.app)
         }
     }
 }
