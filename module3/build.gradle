@@ -58,7 +58,7 @@ android {
 }
 
 dependencies {
-    implementation project(':patrol-mobile-common')
+    implementation project(':module1')
     implementation 'io.github.yavski:fab-speed-dial:1.0.7'
     implementation 'org.altbeacon:android-beacon-library:2.19.5'
     implementation 'org.greenrobot:eventbus:3.3.1'
