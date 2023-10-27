@@ -36,6 +36,17 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+        // How to Rename the output AAR file:
+    //      - https://stackoverflow.com/questions/24728591/how-to-set-name-of-aar-output-from-gradle
+    // Note that 'defaultConfig' references the above closure with that name
+    // And rootProject.name is defined in settings.gradle
+    libraryVariants.all { variant ->
+        variant.outputs.all {
+            // Do not add Variant (buildType) Name at the end
+            //outputFileName = "${rootProject.name}-${defaultConfig.versionName}.aar"
+            outputFileName = "$buildDir/outputs/apk/real/release/patrol-admin-real-release.apk"
+        }
+    }
 
 }
 
