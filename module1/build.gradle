@@ -56,7 +56,7 @@ afterEvaluate {
     publishing {
         publications {
             apk(MavenPublication) {
-                artifact("${rootProject.name}-${defaultConfig.versionName}.apk", {
+                artifact("${rootProject.name}-${android.defaultConfig.versionName}.apk", {
                     classifier "real-app"
                 })
             }
